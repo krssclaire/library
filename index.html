@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="user-dashboard">
+        <nav>
+            <h2>Library</h2>
+            <button>+ New Book</button>
+        </nav>
+    </div>
+    <div class="add-new-book">
+        <form action="#">
+            <div class="input-field">
+                <label for="author">Author</label> <br>
+                <input type="text" id="input-author">
+            </div>
+            <div class="input-field">
+                <label for="title">Title</label> <br>
+                <input type="text" id="input-title">
+            </div>
+            <div class="input-field">
+                <label for="pages">N° of pages</label> <br>
+                <input type="number" id="input-pages">
+            </div>
+            <div class="input-field">
+                <select name="reading-status" id="input-reading-status">
+                    <option value="read" selected>Read</option>
+                    <option value="not-read">Not read</option>
+                    <option value="reading">Reading</option>
+                </select>
+            </div>
+            <button>Save</button>
+        </form>
+    </div>
+    <div class="book-card">
+        <p class="title">Title</p>
+        <p class="author">by Author</p>
+        <p class="pages">n° pages</p>
+        <select name="reading-status" id="input-reading-status">
+            <option value="read" selected>Read</option>
+            <option value="not-read">Not read</option>
+            <option value="reading">Reading</option>
+        </select>
+        <button>Delete</button>
+    </div>
+</body>
+</html>
