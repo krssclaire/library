@@ -150,6 +150,14 @@ input {
     border-radius: 5px;
 }
 
+input:focus:invalid {
+    border: solid 1px rgb(195, 20, 20);
+}
+
+input:focus:valid{
+    border: solid 1px rgb(19, 161, 6);
+}
+
 .form-buttons {
     width: 100%;
     display: flex;

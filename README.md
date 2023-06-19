@@ -1,7 +1,7 @@
 # Library
 
 Small library for bookish people <br> 
-Live demo: [Home Page](https://krssclaire.github.io/library)
+Live demo: [Library](https://krssclaire.github.io/library)
 
 
 ## Technologies used
@@ -19,8 +19,8 @@ Live demo: [Home Page](https://krssclaire.github.io/library)
 
 ## Features
 
-* Responsive design for Desktop, Tablet and Mobile.
-
+* Responsive design for Desktop, Tablet and Mobile
+* Form validation while entering New Book data
 
 
 ## Acknowledgments
