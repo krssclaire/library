@@ -24,6 +24,7 @@ body {
 }
 
 h2 {
+    position: sticky;
     text-align: center;
     font-size: 2.5em;
     padding: 15px;
@@ -48,12 +49,10 @@ h2 {
 #add-book:hover {
     background-color: var(--hover-color);
     border-color: var(--hover-color);
+    color: white;
     cursor: pointer;
 }
 
-#add-book-text {
-    display: none;
-}
 
 /* Book cards */
 .cards-container {
@@ -76,7 +75,16 @@ h2 {
     gap: 20px;
 }
 
-select, option, .delete {
+.title {
+    font-size: 1.1em;
+}
+
+.pages {
+    color: gray;
+    font-size: 0.9em;
+}
+
+select, .delete {
     font-family: inherit;
     font-size: 0.8em;
     text-align: center;
@@ -89,6 +97,10 @@ select, option, .delete {
 select:hover {
     background-color: lightgray;
     cursor: pointer;
+}
+
+select>option {
+    font-size: inherit;
 }
 
 .delete {
@@ -112,6 +124,7 @@ select:hover {
     width: 100vw;
     z-index: 5;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -137,26 +150,69 @@ input {
     border-radius: 5px;
 }
 
-.save {
-    background-color: transparent;
+.form-buttons {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.save, .cancel {
     color: white;
     font-family: inherit;
     font-size: 1em;
     font-weight: 800;
     text-align: center;
     height: 40px;
-    border: solid 1px white;
+    width: 45%;
+    border: none;
     border-radius: 5px;
 }
 
+.save {
+    background-color: rgb(69, 160, 69);
+}
+
+.cancel {
+    background-color: rgb(214, 58, 58);
+}
+
 .save:hover {
-    background-color: var(--hover-color);
-    color: white;
-    border-color: var(--hover-color);
+    background-color: rgb(61, 142, 61);
+    cursor: pointer;
+}
+
+.cancel:hover {
+    background-color: rgb(192, 53, 53);
     cursor: pointer;
 }
 
 /* JS */
 .invisible {
     display: none;
+}
+
+/* Desktop */
+@media screen and (min-width: 800px) {
+    form {
+        padding: 50px;
+        height: 550px;
+        width: 500px;
+    }
+    input {
+        font-family: inherit;
+        font-size: inherit;
+        margin-top: 5px;
+        padding: 5px;
+        width: 100%;
+        border: none;
+        border-radius: 5px;
+    }
+    .cards-container {
+        padding: 2em;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 0.25fr));
+    }
+    .book-card {
+        min-width: 300px;
+        min-height: 300px;
+    }
 }

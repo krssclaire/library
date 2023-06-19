@@ -11,15 +11,12 @@
 <body>
     <div class="user-dashboard">
         <h2>Library</h2>
-        <button id="add-book">
-            <i class="bi bi-plus"></i>
-            <span id="add-book-text">New Book</span>
-        </button>
+        <button id="add-book"><i class="bi bi-plus"></i></button>
         <div class="cards-container">
             <div class="book-card">
-                <p class="title">Title</p>
-                <p class="author">by Author</p>
-                <p class="pages">n° pages</p>
+                <p class="title">I, Robot</p>
+                <p class="author"><span class="by">by</span> Isaac Asimov</p>
+                <p class="pages">249 pages</p>
                 <select name="reading-status" id="input-reading-status">
                     <option value="read" selected>Read</option>
                     <option value="not-read">Not read</option>
@@ -28,9 +25,9 @@
                 <button class="delete">Delete</button>
             </div>
             <div class="book-card">
-                <p class="title">Title</p>
-                <p class="author">by Author</p>
-                <p class="pages">n° pages</p>
+                <p class="title">Atomic Habits</p>
+                <p class="author"><span class="by">by</span> James Clear</p>
+                <p class="pages">250 pages</p>
                 <select name="reading-status" id="input-reading-status">
                     <option value="read" selected>Read</option>
                     <option value="not-read">Not read</option>
@@ -39,9 +36,9 @@
                 <button class="delete">Delete</button>
             </div>
             <div class="book-card">
-                <p class="title">Title</p>
-                <p class="author">by Author</p>
-                <p class="pages">n° pages</p>
+                <p class="title">Limitless</p>
+                <p class="author"><span class="by">by</span> Jim Kwik</p>
+                <p class="pages">318 pages</p>
                 <select name="reading-status" id="input-reading-status">
                     <option value="read" selected>Read</option>
                     <option value="not-read">Not read</option>
@@ -50,9 +47,9 @@
                 <button class="delete">Delete</button>
             </div>
             <div class="book-card">
-                <p class="title">Title</p>
-                <p class="author">by Author</p>
-                <p class="pages">n° pages</p>
+                <p class="title">It ends with us</p>
+                <p class="author"><span class="by">by</span> Colleen Hoover</p>
+                <p class="pages">327 pages</p>
                 <select name="reading-status" id="input-reading-status">
                     <option value="read" selected>Read</option>
                     <option value="not-read">Not read</option>
@@ -62,7 +59,7 @@
             </div>
         </div>
     </div>
-    <div class="add-new-book">
+    <div class="add-new-book invisible">
         <form action="#">
             <div class="input-field">
                 <label for="title">Title</label> <br>
@@ -83,7 +80,10 @@
                     <option value="reading">Reading</option>
                 </select>
             </div>
-            <button class="save">Save</button>
+            <div class="form-buttons">
+                <button class="save">Save</button>
+                <button class="cancel"> Cancel</button>
+            </div>
         </form>
     </div>
 </body>
