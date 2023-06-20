@@ -20,3 +20,8 @@ function addBookToLibrary() {
 1. Add a button on each book’s display to change its read status.
     1. To facilitate this you will want to create the function that toggles a book’s read status on your Book prototype instance.
 >> NOTE: You’re not required to add any type of storage right now. You will have the option to come back to this project later on in the course.
+
+
+NOTE:
+  * The added book Read value isn't saved 
+  * Need to display books looping through the library array
