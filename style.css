@@ -84,6 +84,10 @@ h2 {
     font-size: 0.9em;
 }
 
+select {
+    background-color: lightgray;
+}
+
 select, .delete {
     font-family: inherit;
     font-size: 0.8em;

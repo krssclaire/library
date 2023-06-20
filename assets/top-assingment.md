@@ -12,7 +12,6 @@ function Book() {
 function addBookToLibrary() {
   // do stuff here
 }
-
 1. Write a function that loops through the array and displays each book on the page. You can display them in some sort of table, or each on their own “card”. It might help for now to manually add a few books to your array so you can see the display.
 1. Add a “NEW BOOK” button that brings up a form allowing users to input the details for the new book: author, title, number of pages, whether it’s been read and anything else you might want. You will most likely encounter an issue where submitting your form will not do what you expect it to do. That’s because the submit input tries to send the data to a server by default. If you’ve done the bonus section for the calculator assignment, you might be familiar with event.preventDefault();. Read up on the event.preventDefault documentation again and see how you can solve this issue!
 1. Add a button on each book’s display to remove the book from the library.
@@ -23,5 +22,4 @@ function addBookToLibrary() {
 
 
 NOTE:
-  * The added book Read value isn't saved 
-  * Need to display books looping through the library array
+  * Add delete functionality
