@@ -99,19 +99,24 @@ function displayLibrary() {
     deleteBtn.textContent = 'Delete';
     readingStatus.value = newBookValues[3];
 
-    deleteBtn.addEventListener('click', (e) => {
-        deleteBook(e);
-    });
+    readingStatus.addEventListener('change', (e) => updateReadingStatus(e));
+
+    deleteBtn.addEventListener('click', (e) => deleteBook(e));
+}
+
+function updateReadingStatus(e) {
+    newBook['read'] = e.target.value;
+    console.log(library);
 }
 
 function deleteBook(e) {
     let objIndex = library.findIndex(object => object['id'] == e.target.dataset['id']);
+    let trash = library.splice(objIndex, 1);
 
     e.target.parentElement.remove(); 
     
     console.log('------------');
     console.log(`Object index: ${objIndex}`);
-    let trash = library.splice(objIndex, 1);
     console.log(trash);
     console.log(library);
 }

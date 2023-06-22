@@ -26,6 +26,7 @@ Live demo: [Library](https://krssclaire.github.io/library)
 * About the library:
     * the user can add new books to the library through a form 
     * the user can delete particular books
+    * the user can update the reading status of the book (read, not read or currently reading)
 
 
 ## Acknowledgments
