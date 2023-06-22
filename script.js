@@ -1,4 +1,4 @@
-const DEFAULT_BOOK = new Book('Atomic Habits', 'James Clear', 250, 'read');
+const DEFAULT_BOOK = new Book('Atomic Habits', 'James Clear', 250, 'read', 0);
 const addBtn = document.querySelector('#add-book');
 const newBookForm = document.querySelector('.add-new-book');
 const inputTitle = document.querySelector('#input-title');
@@ -9,45 +9,32 @@ const saveBtn = document.querySelector('.save');
 const cancelBtn = document.querySelector('.cancel');
 const dashboard = document.querySelector('.cards-container');
 
-// Created
-
 let library = [];
 let newBook = DEFAULT_BOOK;
 
-console.log(library.length);
-
-addBtn.addEventListener('click', showNewBookForm);
-cancelBtn.addEventListener('click', hideNewBookForm);
+addBtn.addEventListener('click', showForm);
+cancelBtn.addEventListener('click', hideForm);
 saveBtn.addEventListener('click', (e) => {
-  createLibraryNewBook(e);
-  displayLibrary,
-  hideNewBookForm,
-  resetForm
+  addBookToLibrary(e);
+  displayLibrary();
+  resetForm();
+  hideForm();
 });
 
-
-function Book(title, author, pages, read, index) {
+function Book(title, author, pages, read, id) {
     this.title = title;
     this.author = author;
     this.pages = pages;
     this.read = read;
-    this.index = index;
+    this.id = id;
 }
 
-function deleteBook(e) {
-    console.log('Hello');
-    console.log(e.target);
-    //library.splice(index, 1);
-    
-    //displayLibrary();*/
-}
-
-function showNewBookForm() {
+function showForm() {
     newBookForm.classList.remove('invisible');
     resetForm();
 }
 
-function hideNewBookForm() {
+function hideForm() {
     newBookForm.classList.add('invisible');
 }
 
@@ -55,75 +42,84 @@ function resetForm() {
     inputTitle.value = '';
     inputAuthor.value = '';
     inputPages.value = '';
-    inputRead.value = 'Read';
+    inputRead.value = 'read';
 }
 
-function createLibraryNewBook(e) {
-    newBook = new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.value, bookIndex);
+function addBookToLibrary(e) {
+    newBook = new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.value, libraryLen);
     library.push(newBook);
     e.preventDefault();
-    // Other functions associated with Save btn
-    displayLibrary();
-    hideNewBookForm();
-    resetForm();
 }
 
 // Display library 
+let libraryLen = library.length;
+let bookIndex;
+
 function displayLibrary() {
-    for (let book of library) {
-        library = [];
-        let newBookValues = Object.values(book);
-        console.log(book);
+    libraryLen = library.length;
+    bookIndex = libraryLen - 1;
+    console.log(`Library length: ${libraryLen}`);
+    console.log(library);
+    console.log(bookIndex);
 
-        let card = document.createElement('div');
-        let title = document.createElement('p');
-        let author = document.createElement('p');
-        let pages = document.createElement('p');
-        let status = document.createElement('select');
-        let read = document.createElement('option');
-        let notRead = document.createElement('option');
-        let currentlyReading = document.createElement('option');
-        let deleteBtn = document.createElement('button');
+    let card = document.createElement('div');
+    let title = document.createElement('p');
+    let author = document.createElement('p');
+    let pages = document.createElement('p');
+    let readingStatus = document.createElement('select');
+    let read = document.createElement('option');
+    let notRead = document.createElement('option');
+    let currentlyReading = document.createElement('option');
+    let deleteBtn = document.createElement('button');
     
-        card.classList.add('book-card');
-        //card.setAttribute('data', '')
-        title.classList.add('title');
-        author.classList.add('author');
-        pages.classList.add('pages');
-        status.classList.add('input-reading-status');
-        read.value = 'read';
-        notRead.value = 'not-read';
-        currentlyReading.value = 'reading';
-        deleteBtn.classList.add('delete');
-
-        card.append(title);
-        card.append(author);
-        card.append(pages);
-        card.append(status);
-        card.append(deleteBtn);
-        status.appendChild(read);
-        status.appendChild(notRead);
-        status.appendChild(currentlyReading);
-
+    card.classList.add('book-card');
+    card.setAttribute('data-id', `${bookIndex}`)
+    title.classList.add('title');
+    author.classList.add('author');
+    pages.classList.add('pages');
+    readingStatus.classList.add('input-reading-status');
+    read.value = 'read';
+    notRead.value = 'not-read';
+    currentlyReading.value = 'reading';
+    deleteBtn.classList.add('delete');
+    deleteBtn.setAttribute('data-id', `${bookIndex}`);
     
-        title.textContent = newBookValues[0];
-        author.textContent = `by ${newBookValues[1]}`;
-        pages.textContent = ` ${newBookValues[2]} pages`;
-        read.textContent = 'Read';
-        notRead.textContent = 'Not read';
-        currentlyReading.text = 'Reading';
-        deleteBtn.textContent = 'Delete';
-        status.value = newBookValues[3];
-        dashboard.append(card);
-    }
-    
-    const deleteBookBtn = document.querySelectorAll('.delete');
-    deleteBookBtn.forEach(btn => {
-        btn.addEventListener('click', deleteBook);
-    })
+    card.append(title);
+    card.append(author);
+    card.append(pages);
+    card.append(readingStatus);
+    card.append(deleteBtn);
+    readingStatus.appendChild(read);
+    readingStatus.appendChild(notRead);
+    readingStatus.appendChild(currentlyReading);
+    dashboard.append(card);
 
+    let newBookValues = Object.values(newBook);
+    title.textContent = newBookValues[0];
+    author.textContent = `by ${newBookValues[1]}`;
+    pages.textContent = ` ${newBookValues[2]} pages`;
+    read.textContent = 'Read';
+    notRead.textContent = 'Not read';
+    currentlyReading.text = 'Reading';
+    deleteBtn.textContent = 'Delete';
+    readingStatus.value = newBookValues[3];
+
+    deleteBtn.addEventListener('click', (e) => {
+        deleteBook(e);
+    });
 }
 
+function deleteBook(e) {
+    let objIndex = library.findIndex(object => object['id'] == e.target.dataset['id']);
+
+    e.target.parentElement.remove(); 
+    
+    console.log('------------');
+    console.log(`Object index: ${objIndex}`);
+    let trash = library.splice(objIndex, 1);
+    console.log(trash);
+    console.log(library);
+}
 
 window.onload = () => {
     library.push(DEFAULT_BOOK);
