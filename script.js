@@ -15,15 +15,14 @@ let newBook = DEFAULT_BOOK;
 
 addBtn.addEventListener('click', showForm);
 cancelBtn.addEventListener('click', hideForm);
-
-saveBtn.addEventListener('click', () => {
+saveBtn.addEventListener('click', (e) => {
     if (form.checkValidity()) {
         addBookToLibrary();
         displayBook();
-        hideForm();
         resetForm();
+        e.preventDefault();
+        hideForm();
     }
-    console.log(library);
 });
 
 function Book(title, author, pages, read, id) {
@@ -53,7 +52,6 @@ function resetForm() {
 function addBookToLibrary() {
     newBook = new Book(inputTitle.value, inputAuthor.value, Number(inputPages.value), inputRead.value, crypto.randomUUID());
     library.push(newBook);
-    //e.preventDefault();
 }
 
 function displayBook() {
