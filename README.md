@@ -23,6 +23,9 @@ Live demo: [Library](https://krssclaire.github.io/library)
 
 * Responsive design for Desktop, Tablet and Mobile
 * Form validation while entering New Book data
+* About the library:
+    * the user can add new books to the library through a form 
+    * the user can delete particular books
 
 
 ## Acknowledgments

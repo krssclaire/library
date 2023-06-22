@@ -1,4 +1,4 @@
-const DEFAULT_BOOK = new Book('Atomic Habits', 'James Clear', 250, 'read', 0);
+const DEFAULT_BOOK = new Book('Atomic Habits', 'James Clear', 250, 'read', crypto.randomUUID());
 const addBtn = document.querySelector('#add-book');
 const newBookForm = document.querySelector('.add-new-book');
 const inputTitle = document.querySelector('#input-title');
@@ -46,21 +46,17 @@ function resetForm() {
 }
 
 function addBookToLibrary(e) {
-    newBook = new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.value, libraryLen);
+    newBook = new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.value, crypto.randomUUID());
     library.push(newBook);
     e.preventDefault();
 }
 
 // Display library 
-let libraryLen = library.length;
-let bookIndex;
-
 function displayLibrary() {
-    libraryLen = library.length;
-    bookIndex = libraryLen - 1;
-    console.log(`Library length: ${libraryLen}`);
+    console.log(`Library length: ${library.length}`);
     console.log(library);
-    console.log(bookIndex);
+    
+    let newBookValues = Object.values(newBook);
 
     let card = document.createElement('div');
     let title = document.createElement('p');
@@ -73,7 +69,7 @@ function displayLibrary() {
     let deleteBtn = document.createElement('button');
     
     card.classList.add('book-card');
-    card.setAttribute('data-id', `${bookIndex}`)
+    card.setAttribute('data-id', `${newBookValues[4]}`)
     title.classList.add('title');
     author.classList.add('author');
     pages.classList.add('pages');
@@ -82,7 +78,7 @@ function displayLibrary() {
     notRead.value = 'not-read';
     currentlyReading.value = 'reading';
     deleteBtn.classList.add('delete');
-    deleteBtn.setAttribute('data-id', `${bookIndex}`);
+    deleteBtn.setAttribute('data-id', `${newBookValues[4]}`);
     
     card.append(title);
     card.append(author);
@@ -94,7 +90,6 @@ function displayLibrary() {
     readingStatus.appendChild(currentlyReading);
     dashboard.append(card);
 
-    let newBookValues = Object.values(newBook);
     title.textContent = newBookValues[0];
     author.textContent = `by ${newBookValues[1]}`;
     pages.textContent = ` ${newBookValues[2]} pages`;
