@@ -8,17 +8,22 @@ const inputRead = document.querySelector('#input-reading-status');
 const saveBtn = document.querySelector('.save');
 const cancelBtn = document.querySelector('.cancel');
 const dashboard = document.querySelector('.cards-container');
+const form = document.querySelector('form');
 
 let library = [];
 let newBook = DEFAULT_BOOK;
 
 addBtn.addEventListener('click', showForm);
 cancelBtn.addEventListener('click', hideForm);
-saveBtn.addEventListener('click', (e) => {
-  addBookToLibrary(e);
-  displayLibrary();
-  resetForm();
-  hideForm();
+
+saveBtn.addEventListener('click', () => {
+    if (form.checkValidity()) {
+        addBookToLibrary();
+        displayBook();
+        hideForm();
+        resetForm();
+    }
+    console.log(library);
 });
 
 function Book(title, author, pages, read, id) {
@@ -45,14 +50,13 @@ function resetForm() {
     inputRead.value = 'read';
 }
 
-function addBookToLibrary(e) {
-    newBook = new Book(inputTitle.value, inputAuthor.value, inputPages.value, inputRead.value, crypto.randomUUID());
+function addBookToLibrary() {
+    newBook = new Book(inputTitle.value, inputAuthor.value, Number(inputPages.value), inputRead.value, crypto.randomUUID());
     library.push(newBook);
-    e.preventDefault();
+    //e.preventDefault();
 }
 
-// Display library 
-function displayLibrary() {
+function displayBook() {
     console.log(`Library length: ${library.length}`);
     console.log(library);
     
@@ -100,7 +104,6 @@ function displayLibrary() {
     readingStatus.value = newBookValues[3];
 
     readingStatus.addEventListener('change', (e) => updateReadingStatus(e));
-
     deleteBtn.addEventListener('click', (e) => deleteBook(e));
 }
 
@@ -123,5 +126,5 @@ function deleteBook(e) {
 
 window.onload = () => {
     library.push(DEFAULT_BOOK);
-    displayLibrary();
+    displayBook();
 }
