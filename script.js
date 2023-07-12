@@ -1,3 +1,13 @@
+class Book {
+    constructor(title, author, pages, read, id) {
+        this.title = title;
+        this.author = author;
+        this.pages = pages;
+        this.read = read;
+        this.id = id;
+    }
+}
+
 const DEFAULT_BOOK = new Book('Atomic Habits', 'James Clear', 250, 'read', crypto.randomUUID());
 const addBtn = document.querySelector('#add-book');
 const newBookForm = document.querySelector('.add-new-book');
@@ -24,14 +34,6 @@ saveBtn.addEventListener('click', (e) => {
         hideForm();
     }
 });
-
-function Book(title, author, pages, read, id) {
-    this.title = title;
-    this.author = author;
-    this.pages = pages;
-    this.read = read;
-    this.id = id;
-}
 
 function showForm() {
     newBookForm.classList.remove('invisible');
